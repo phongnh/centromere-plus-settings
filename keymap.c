@@ -2,7 +2,8 @@
 
 enum centromere_plus_layers {
     _PHONG,
-    _QWERTY,
+    _V1,
+    _V2,
     _LOWER,
     _RAISE,
     _ADJUST,
@@ -11,6 +12,8 @@ enum centromere_plus_layers {
 
 enum centromere_plus_keycodes {
     EPRM = SAFE_RANGE,
+    LOWER,
+    RAISE,
 };
 
 // Fillers to make layering more clear
@@ -19,62 +22,91 @@ enum centromere_plus_keycodes {
 
 #define LWR_SPC LT(_LOWER, KC_SPC)      // Turn on _LOWER layer held, Space when tapped
 #define RSE_ENT LT(_RAISE, KC_ENT)      // Turn on _RAISE layer held, Enter when tapped
-#define MOU_SCL LT(_MOUSE, KC_SCLN)     // Turn on _MOUSE layer when held, ; when tapped #define CTL_ESC LCTL_T(KC_ESC)          // Left Control when held, Esc when tapped
+#define RSE_BSP LT(_RAISE, KC_BSPC)     // Turn on _RAISE layer held, Backspace when tapped
+#define MOU_SCL LT(_MOUSE, KC_SCLN)     // Turn on _MOUSE layer when held, ; when tapped
+#define CTL_ESC LCTL_T(KC_ESC)          // Left Control when held, Esc when tapped
 #define CTL_ESC LCTL_T(KC_ESC)          // Left Control when held, Esc when tapped
 #define CTL_Z   LCTL_T(KC_Z)            // Left Control when held, z when tapped
 #define CTL_SCL LCTL_T(KC_SCLN)         // Left Control when held, ; when tapped
 #define CTL_SLS RCTL_T(KC_SLSH)         // Right Control when held, / when tapped
 #define GUI_QUO RGUI_T(KC_QUOT)         // Right Gui when held, " when tapped
 #define SFT_ENT RSFT_T(KC_ENT)          // Right Shift when held, Enter when tapped
+#define SFT_BSP RSFT_T(KC_BSPC)         // Right Shift when held, Backspace when tapped
+#define SFT_BSL RSFT_T(KC_BSLS)         // Right Shift when held, \ when tapped
 #define CAG_PUP LCAG_T(KC_PGUP)         // Ctrl+Alt+Gui when held, Page Up when tapped
 #define CAG_PDN LCAG_T(KC_PGDN)         // Ctrl+Alt+Gui when held, Page Down when tapped
+#define CAG_LBR LCAG_T(KC_LBRC)         // Ctrl+Alt+Gui when held, [ when tapped
+#define CAG_RBR LCAG_T(KC_RBRC)         // Ctrl+Alt+Gui when held, ] when tapped
 
-#define PHONG  DF(_PHONG)               // Set default layer to _PHONG
-#define QWERTY DF(_QWERTY)              // Set default layer to _QWERTY
+// Set default layer
+#define PHONG DF(_PHONG)            // My default layout - adapt from ErgoDox-EZ
+#define V1    DF(_V1)               // Variant 1
+#define V2    DF(_V2)               // Variant 2
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /*
      * ┌────────┬────────┬────────┬────────┬────────┬────────┬────────┐           ┌────────┬────────┬────────┬────────┬────────┬────────┬────────┐
-     * │   =    │   1    │   2    │   3    │   4    │   5    │  Del   │           │  GEsc  │   6    │   7    │   8    │   9    │   0    │   -    │
+     * │   =    │   1    │   2    │   3    │   4    │   5    │  Del   │           │   `    │   6    │   7    │   8    │   9    │   0    │   -    │
      * ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤           ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      * │  Tab   │   Q    │   W    │   E    │   R    │   T    │   [    │           │   ]    │   Y    │   U    │   I    │   O    │   P    │   \    │
      * ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤           ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      * │Esc/ CTL│   A    │   S    │   D    │   F    │   G    │  PgUp  │           │  PgDn  │   H    │   J    │   K    │   L    │ ; / MOU│' / GUI │
      * ├────────┼────────┼────────┼────────┼────────┼────────┼─┬──────┴─┐       ┌─┴──────┬─┼────────┼────────┼────────┼────────┼────────┼────────┤
-     * │ Shift  │Z / CTL │   X    │   C    │   V    │   B    │││  Home  │       │  End   │││  N     │   M    │   ,    │   .    │ / / CTL│Sft /Ent│
+     * │ Shift  │Z / CTL │   X    │   C    │   V    │   B    │││  Home  │       │  End   │││  N     │   M    │   ,    │   .    │ / / CTL│Sft/BkSp│
      * └────────┴────────┴────────┴──────┬─┴──────┬─┴──────┬─┼─┼────────┤       ├────────┼─┼─┬──────┴─┬──────┴─┬──────┴────────┴────────┴────────┘
-     *                                   │  GUI   │LWR /SPC│││││ Space  │       │ BkSpace│││││RSE /ENT│  ALT   │
+     *                                   │  GUI   │LWR/ SPC│││││ Space  │       │  Enter │││││RSE/BkSp│  ALT   │
      *                                   └────────┴────────┴─┴─┴────────┘       └────────┴─┴─┴────────┴────────┘
      */
     [_PHONG] = {
-        { KC_EQL,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,    KC_DEL,   KC_GESC,  KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS },
+        { KC_EQL,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,    KC_DEL,   KC_GRV,   KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS },
         { KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,    KC_LBRC,  KC_RBRC,  KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_BSLS },
         { CTL_ESC,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,    CAG_PUP,  CAG_PDN,  KC_H,     KC_J,     KC_K,     KC_L,     MOU_SCL,  GUI_QUO },
-        { KC_LSFT,  CTL_Z,    KC_X,     KC_C,     KC_V,     KC_B,    XXXXXXX,  XXXXXXX,  KC_N,     KC_M,     KC_COMM,  KC_DOT,   CTL_SLS,  SFT_ENT },
+        { KC_LSFT,  CTL_Z,    KC_X,     KC_C,     KC_V,     KC_B,    XXXXXXX,  XXXXXXX,  KC_N,     KC_M,     KC_COMM,  KC_DOT,   CTL_SLS,  SFT_BSP },
         { XXXXXXX,  XXXXXXX,  KC_LGUI,  LWR_SPC,  KC_HOME,  KC_SPC,  XXXXXXX,  XXXXXXX,  KC_BSPC,  KC_END,   RSE_ENT,  KC_LALT,  XXXXXXX,  XXXXXXX }
+    },
+
+
+    /*
+     * ┌────────┬────────┬────────┬────────┬────────┬────────┬────────┐           ┌────────┬────────┬────────┬────────┬────────┬────────┬────────┐
+     * │   `    │   1    │   2    │   3    │   4    │   5    │   -    │           │   =    │   6    │   7    │   8    │   9    │   0    │ BkSpace│
+     * ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤           ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+     * │  Tab   │   Q    │   W    │   E    │   R    │   T    │   [    │           │   ]    │   Y    │   U    │   I    │   O    │   P    │   \    │
+     * ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤           ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+     * │Esc/ CTL│   A    │   S    │   D    │   F    │   G    │  PgUp  │           │  PgDn  │   H    │   J    │   K    │   L    │ ; / MOU│' / GUI │
+     * ├────────┼────────┼────────┼────────┼────────┼────────┼─┬──────┴─┐       ┌─┴──────┬─┼────────┼────────┼────────┼────────┼────────┼────────┤
+     * │ Shift  │Z / CTL │   X    │   C    │   V    │   B    │││  Home  │       │  End   │││  N     │   M    │   ,    │   .    │ / / CTL│ Shift  │
+     * └────────┴────────┴────────┴──────┬─┴──────┬─┴──────┬─┼─┼────────┤       ├────────┼─┼─┬──────┴─┬──────┴─┬──────┴────────┴────────┴────────┘
+     *                                   │  GUI   │LWR/ SPC│││││ Space  │       │ Enter  │││││RSE/ ENT│  ALT   │
+     *                                   └────────┴────────┴─┴─┴────────┘       └────────┴─┴─┴────────┴────────┘
+     */
+    [_V1] = {
+        { KC_GRV,   KC_1,     KC_2,     KC_3,    KC_4,      KC_5,    KC_MINS,  KC_EQL,   KC_6,     KC_7,    KC_8,     KC_9,     KC_0,      KC_BSPC },
+        { KC_TAB,   KC_Q,     KC_W,     KC_E,    KC_R,      KC_T,    KC_LBRC,  KC_RBRC,  KC_Y,     KC_U,    KC_I,     KC_O,     KC_P,      KC_BSLS },
+        { CTL_ESC,  KC_A,     KC_S,     KC_D,    KC_F,      KC_G,    CAG_PUP,  CAG_PDN,  KC_H,     KC_J,    KC_K,     KC_L,     MOU_SCL,   GUI_QUO },
+        { KC_LSFT,  CTL_Z,    KC_X,     KC_C,    KC_V,      KC_B,    XXXXXXX,  XXXXXXX,  KC_N,     KC_M,    KC_COMM,  KC_DOT,   CTL_SLS,   KC_RSFT },
+        { XXXXXXX,  XXXXXXX,  KC_LGUI,  LWR_SPC, KC_HOME,   KC_SPC,  XXXXXXX,  XXXXXXX,  KC_ENT,   KC_END,  RSE_ENT,  KC_LALT,  XXXXXXX,   XXXXXXX }
     },
 
     /*
      * ┌────────┬────────┬────────┬────────┬────────┬────────┬────────┐           ┌────────┬────────┬────────┬────────┬────────┬────────┬────────┐
-     * │  Esc   │   1    │   2    │   3    │   4    │   5    │   -    │           │   =    │   6    │   7    │   8    │   9    │   0    │ BkSpace│
+     * │   =    │   1    │   2    │   3    │   4    │   5    │  Del   │           │   `    │   6    │   7    │   8    │   9    │   0    │   -    │
      * ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤           ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     * │  Tab   │   Q    │   W    │   E    │   R    │   T    │   [    │           │   ]    │   Y    │   U    │   I    │   O    │   P    │   \    │
+     * │  Tab   │   Q    │   W    │   E    │   R    │   T    │ BkSpace│           │   \    │   Y    │   U    │   I    │   O    │   P    │ BkSpace│
      * ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤           ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     * │Esc/ CTL│   A    │   S    │   D    │   F    │   G    │  PgUp  │           │  PgDn  │   H    │   J    │   K    │   L    │ ; / MOU│' / GUI │
+     * │Esc/ CTL│   A    │   S    │   D    │   F    │   G    │   [    │           │   ]    │   H    │   J    │   K    │   L    │ ; / MOU│' / GUI │
      * ├────────┼────────┼────────┼────────┼────────┼────────┼─┬──────┴─┐       ┌─┴──────┬─┼────────┼────────┼────────┼────────┼────────┼────────┤
-     * │ Shift  │Z / CTL │   X    │   C    │   V    │   B    │││  Home  │       │  End   │││  N     │   M    │   ,    │   .    │ / / CTL│Sft /Ent│
+     * │ Shift  │Z / CTL │   X    │   C    │   V    │   B    │││  Home  │       │  End   │││  N     │   M    │   ,    │   .    │ / / CTL│Sft / \ │
      * └────────┴────────┴────────┴──────┬─┴──────┬─┴──────┬─┼─┼────────┤       ├────────┼─┼─┬──────┴─┬──────┴─┬──────┴────────┴────────┴────────┘
-     *                                   │  GUI   │LWR /SPC│││││ Space  │       │ Space  │││││RSE /ENT│  ALT   │
+     *                                   │  GUI   │LWR/ SPC│││││ Space  │       │ Enter  │││││RSE/ ENT│  ALT   │
      *                                   └────────┴────────┴─┴─┴────────┘       └────────┴─┴─┴────────┴────────┘
      */
-    [_QWERTY] = {
-        { KC_ESC,   KC_1,     KC_2,     KC_3,    KC_4,      KC_5,    KC_MINS,  KC_EQL,   KC_6,     KC_7,    KC_8,     KC_9,     KC_0,      KC_BSPC },
-        { KC_TAB,   KC_Q,     KC_W,     KC_E,    KC_R,      KC_T,    KC_LBRC,  KC_RBRC,  KC_Y,     KC_U,    KC_I,     KC_O,     KC_P,      KC_BSLS },
-        { KC_LSFT,  KC_A,     KC_S,     KC_D,    KC_F,      KC_G,    CAG_PUP,  CAG_PDN,  KC_H,     KC_J,    KC_K,     KC_L,     MOU_SCL,   GUI_QUO },
-        { KC_LCTL,  KC_Z,     KC_X,     KC_C,    KC_V,      KC_B,    XXXXXXX,  XXXXXXX,  KC_N,     KC_M,    KC_COMM,  KC_DOT,   CTL_SLS,   SFT_ENT },
-        { XXXXXXX,  XXXXXXX,  KC_LGUI,  LWR_SPC, KC_HOME,   KC_SPC,  XXXXXXX,  XXXXXXX,  KC_SPC,   KC_END,  RSE_ENT,  KC_LALT,  XXXXXXX,   XXXXXXX }
+    [_V2] = {
+        { KC_EQL,   KC_1,     KC_2,     KC_3,    KC_4,      KC_5,    KC_DEL,   KC_GRV,   KC_6,     KC_7,    KC_8,     KC_9,     KC_0,      KC_MINS },
+        { KC_TAB,   KC_Q,     KC_W,     KC_E,    KC_R,      KC_T,    KC_BSPC,  KC_BSLS,  KC_Y,     KC_U,    KC_I,     KC_O,     KC_P,      KC_BSPC },
+        { CTL_ESC,  KC_A,     KC_S,     KC_D,    KC_F,      KC_G,    CAG_LBR,  CAG_RBR,  KC_H,     KC_J,    KC_K,     KC_L,     MOU_SCL,   GUI_QUO },
+        { KC_LCTL,  CTL_Z,    KC_X,     KC_C,    KC_V,      KC_B,    XXXXXXX,  XXXXXXX,  KC_N,     KC_M,    KC_COMM,  KC_DOT,   CTL_SLS,   SFT_BSL },
+        { XXXXXXX,  XXXXXXX,  KC_LGUI,  LWR_SPC, KC_HOME,   KC_SPC,  XXXXXXX,  XXXXXXX,  KC_ENT,   KC_END,  RSE_ENT,  KC_LALT,  XXXXXXX,   XXXXXXX }
     },
-
 
     /*
      * ┌────────┬────────┬────────┬────────┬────────┬────────┬────────┐           ┌────────┬────────┬────────┬────────┬────────┬────────┬────────┐
@@ -84,9 +116,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤           ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      * │ CAPS   │        │  Left  │ Right  │   Up   │        │        │           │        │        │        │        │        │        │        │
      * ├────────┼────────┼────────┼────────┼────────┼────────┼─┬──────┴─┐       ┌─┴──────┬─┼────────┼────────┼────────┼────────┼────────┼────────┤
-     * │        │        │        │        │  Down  │        │││        │       │        │││        │        │        │        │        │        │
+     * │        │        │        │        │  Down  │        │││  PgUp  │       │  PgDn  │││        │        │        │        │        │        │
      * └────────┴────────┴────────┴──────┬─┴──────┬─┴──────┬─┼─┼────────┤       ├────────┼─┼─┬──────┴─┬──────┴─┬──────┴────────┴────────┴────────┘
-     *                                   │        │        │││││        │       │  APP   │││││        │        │
+     *                                   │        │ LOWER  │││││        │       │  APP   │││││ RAISE  │        │
      *                                   └────────┴────────┴─┴─┴────────┘       └────────┴─┴─┴────────┴────────┘
      */
     [_LOWER] = {
@@ -94,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         { KC_GRV,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     XXXXXXX,  XXXXXXX,  KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_BSLS },
         { KC_CAPS,  XXXXXXX,  KC_LEFT,  KC_RGHT,  KC_UP,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX },
         { XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_DOWN,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX },
-        { XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_APP,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX }
+        { XXXXXXX,  XXXXXXX,  XXXXXXX,  LOWER,    KC_PGUP,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_APP,   KC_PGDN,  RAISE,    XXXXXXX,  XXXXXXX,  XXXXXXX }
     },
 
     /*
@@ -105,9 +137,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤           ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      * │        │ Left   │  Down  │  Right │        │        │        │           │        │        │  Left  │  Down  │  Right │        │        │
      * ├────────┼────────┼────────┼────────┼────────┼────────┼─┬──────┴─┐       ┌─┴──────┬─┼────────┼────────┼────────┼────────┼────────┼────────┤
-     * │        │        │        │        │        │        │││        │       │        │││        │        │        │        │        │        │
+     * │        │        │        │        │        │        │││  PgUp  │       │  PgDn  │││        │        │        │        │        │        │
      * └────────┴────────┴────────┴──────┬─┴──────┬─┴──────┬─┼─┼────────┤       ├────────┼─┼─┬──────┴─┬──────┴─┬──────┴────────┴────────┴────────┘
-     *                                   │        │        │││││  MENU  │       │        │││││        │        │
+     *                                   │        │ LOWER  │││││  MENU  │       │        │││││ RAISE  │        │
      *                                   └────────┴────────┴─┴─┴────────┘       └────────┴─┴─┴────────┴────────┘
      */
     [_RAISE] = {
@@ -115,12 +147,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         { XXXXXXX,  XXXXXXX,  KC_UP,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_UP,    XXXXXXX,  XXXXXXX,  KC_PIPE },
         { XXXXXXX,  KC_LEFT,  KC_DOWN,  KC_RGHT,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_LEFT,  KC_DOWN,  KC_RGHT,  XXXXXXX,  XXXXXXX },
         { XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX },
-        { XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_MENU,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX }
+        { XXXXXXX,  XXXXXXX,  XXXXXXX,  LOWER,    KC_PGUP,  KC_MENU,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_PGDN,  RAISE,    XXXXXXX,  XXXXXXX,  XXXXXXX }
     },
 
     /*
      * ┌────────┬────────┬────────┬────────┬────────┬────────┬────────┐           ┌────────┬────────┬────────┬────────┬────────┬────────┬────────┐
-     * │ POWER  │  PHONG │ QWERTY │        │        │        │  F14   │           │  F15   │        │        │        │        │        │        │
+     * │ POWER  │  PHONG │   V1   │   V2   │        │        │  F14   │           │  F15   │        │        │        │        │        │        │
      * ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤           ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      * │ RESET  │        │        │        │        │        │  F21   │           │  F20   │        │        │        │        │        │        │
      * ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤           ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
@@ -132,7 +164,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                                   └────────┴────────┴─┴─┴────────┘       └────────┴─┴─┴────────┴────────┘
      */
     [_ADJUST] = {
-        { KC_PWR,   PHONG,    QWERTY,   XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_F14,   KC_F15,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX },
+        { KC_PWR,   PHONG,    V1,       V2,       XXXXXXX,  XXXXXXX,  KC_F14,   KC_F15,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX },
         { RESET,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_F21,   KC_F20,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX },
         { XXXXXXX,  KC_VOLD,  KC_VOLU,  KC_MUTE,  XXXXXXX,  AU_OFF,   AG_NORM,  AG_SWAP,  AU_ON,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX },
         { XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX },
@@ -193,6 +225,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case EPRM:
             if (record->event.pressed) {
                 eeconfig_init();
+            }
+            return false;
+            break;
+        case LOWER:
+            if (record->event.pressed) {
+                layer_on(_LOWER);
+            } else {
+                layer_off(_LOWER);
+            }
+            return false;
+            break;
+        case RAISE:
+            if (record->event.pressed) {
+                layer_on(_RAISE);
+            } else {
+                layer_off(_RAISE);
             }
             return false;
             break;
