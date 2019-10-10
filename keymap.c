@@ -43,7 +43,7 @@ enum centromere_plus_keycodes {
 #define PHONG DF(_PHONG)            // My default layout - adapt from ErgoDox-EZ
 #define V1    DF(_V1)               // Variant 1
 #define V2    DF(_V2)               // Variant 2
-#define V3    DF(_V2)               // Variant 3
+#define V3    DF(_V3)               // Variant 3
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /*
