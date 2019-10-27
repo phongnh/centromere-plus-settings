@@ -1,10 +1,10 @@
 #include "centromere_plus.h"
 
 enum centromere_plus_layers {
-    _PHONG,
-    _V1,
-    _V2,
-    _V3,
+    _PHONG_V1, /* My default layer that is adapted from ErgoDoxEZ */
+    _PHONG_V2, /* Same as _PHONG_V1 but Enter and Backspace are swapped */
+    _PHONG_V3, /* Same as _PHONG_V1 but \ and Backspace are swapped */
+    _QWERTY,   /* Centromere Plus default layer */
     _LOWER,
     _RAISE,
     _ADJUST,
@@ -15,20 +15,21 @@ enum centromere_plus_keycodes {
     EPRM = SAFE_RANGE,
     LOWER,
     RAISE,
+    PHONG_V1,
+    PHONG_V2,
+    PHONG_V3,
+    QWERTY,
 };
 
 // Fillers to make layering more clear
 #define XXXXXXX KC_NO
 #define _______ KC_TRNS
-
 #define LWR_SPC LT(_LOWER, KC_SPC)      // Turn on _LOWER layer when held, Space when tapped
 #define RSE_ENT LT(_RAISE, KC_ENT)      // Turn on _RAISE layer when held, Enter when tapped
 #define RSE_BSP LT(_RAISE, KC_BSPC)     // Turn on _RAISE layer when held, Backspace when tapped
 #define MOU_SCL LT(_MOUSE, KC_SCLN)     // Turn on _MOUSE layer when held, ; when tapped
 #define CTL_ESC LCTL_T(KC_ESC)          // Left Control when held, Esc when tapped
-#define CTL_ESC LCTL_T(KC_ESC)          // Left Control when held, Esc when tapped
 #define CTL_Z   LCTL_T(KC_Z)            // Left Control when held, z when tapped
-#define CTL_SCL LCTL_T(KC_SCLN)         // Left Control when held, ; when tapped
 #define CTL_SLS RCTL_T(KC_SLSH)         // Right Control when held, / when tapped
 #define GUI_QUO RGUI_T(KC_QUOT)         // Right Gui when held, " when tapped
 #define SFT_ENT RSFT_T(KC_ENT)          // Right Shift when held, Enter when tapped
@@ -38,12 +39,6 @@ enum centromere_plus_keycodes {
 #define CAG_PDN LCAG_T(KC_PGDN)         // Ctrl+Alt+Gui when held, Page Down when tapped
 #define CAG_LBR LCAG_T(KC_LBRC)         // Ctrl+Alt+Gui when held, [ when tapped
 #define CAG_RBR LCAG_T(KC_RBRC)         // Ctrl+Alt+Gui when held, ] when tapped
-
-// Set default layer
-#define PHONG DF(_PHONG)            // My default layout - adapt from ErgoDox-EZ
-#define V1    DF(_V1)               // Variant 1
-#define V2    DF(_V2)               // Variant 2
-#define V3    DF(_V3)               // Variant 3
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /*
@@ -59,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                                   │  GUI   │LWR/ SPC│││││ Space  │       │  Enter │││││RSE/ ENT│  ALT   │
      *                                   └────────┴────────┴─┴─┴────────┘       └────────┴─┴─┴────────┴────────┘
      */
-    [_PHONG] = {
+    [_PHONG_V1] = {
         { KC_EQL,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,    KC_DEL,   KC_GRV,   KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS },
         { KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,    KC_LBRC,  KC_RBRC,  KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_BSLS },
         { CTL_ESC,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,    CAG_PUP,  CAG_PDN,  KC_H,     KC_J,     KC_K,     KC_L,     MOU_SCL,  GUI_QUO },
@@ -80,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                                   │  GUI   │LWR/ SPC│││││ Space  │       │ BkSpace│││││RSE/BkSp│  ALT   │
      *                                   └────────┴────────┴─┴─┴────────┘       └────────┴─┴─┴────────┴────────┘
      */
-    [_V1] = {
+    [_PHONG_V2] = {
         { KC_EQL,   KC_1,     KC_2,     KC_3,    KC_4,      KC_5,    KC_DEL,   KC_GRV,   KC_6,     KC_7,    KC_8,     KC_9,     KC_0,      KC_MINS },
         { KC_TAB,   KC_Q,     KC_W,     KC_E,    KC_R,      KC_T,    KC_LBRC,  KC_RBRC,  KC_Y,     KC_U,    KC_I,     KC_O,     KC_P,      KC_BSLS },
         { CTL_ESC,  KC_A,     KC_S,     KC_D,    KC_F,      KC_G,    CAG_PUP,  CAG_PDN,  KC_H,     KC_J,    KC_K,     KC_L,     MOU_SCL,   GUI_QUO },
@@ -101,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                                   │  GUI   │LWR/ SPC│││││ Space  │       │ Enter  │││││RSE/ ENT│  ALT   │
      *                                   └────────┴────────┴─┴─┴────────┘       └────────┴─┴─┴────────┴────────┘
      */
-    [_V2] = {
+    [_PHONG_V3] = {
         { KC_EQL,   KC_1,     KC_2,     KC_3,    KC_4,      KC_5,    KC_DEL,   KC_GRV,   KC_6,     KC_7,    KC_8,     KC_9,     KC_0,      KC_MINS },
         { KC_TAB,   KC_Q,     KC_W,     KC_E,    KC_R,      KC_T,    KC_LBRC,  KC_RBRC,  KC_Y,     KC_U,    KC_I,     KC_O,     KC_P,      KC_BSPC },
         { CTL_ESC,  KC_A,     KC_S,     KC_D,    KC_F,      KC_G,    CAG_PUP,  CAG_PDN,  KC_H,     KC_J,    KC_K,     KC_L,     MOU_SCL,   GUI_QUO },
@@ -122,7 +117,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                                   │  GUI   │LWR/ SPC│││││ Space  │       │ Enter  │││││RSE/ ENT│  ALT   │
      *                                   └────────┴────────┴─┴─┴────────┘       └────────┴─┴─┴────────┴────────┘
      */
-    [_V3] = {
+    [_QWERTY] = {
         { KC_GRV,   KC_1,     KC_2,     KC_3,    KC_4,      KC_5,    KC_MINS,  KC_EQL,   KC_6,     KC_7,    KC_8,     KC_9,     KC_0,      KC_BSPC },
         { KC_TAB,   KC_Q,     KC_W,     KC_E,    KC_R,      KC_T,    KC_LBRC,  KC_RBRC,  KC_Y,     KC_U,    KC_I,     KC_O,     KC_P,      KC_BSLS },
         { CTL_ESC,  KC_A,     KC_S,     KC_D,    KC_F,      KC_G,    CAG_PUP,  CAG_PDN,  KC_H,     KC_J,    KC_K,     KC_L,     MOU_SCL,   GUI_QUO },
@@ -174,9 +169,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     /*
      * ┌────────┬────────┬────────┬────────┬────────┬────────┬────────┐           ┌────────┬────────┬────────┬────────┬────────┬────────┬────────┐
-     * │ POWER  │  PHONG │   V1   │   V2   │   V3   │        │  F14   │           │  F15   │        │        │        │        │        │        │
+     * │ POWER  │PHONG_V1│PHONG_V2│PHONG_V3│ QWERTY │        │  F14   │           │  F15   │        │        │        │        │        │        │
      * ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤           ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     * │ RESET  │        │        │        │        │        │        │           │        │        │        │        │        │        │        │
+     * │ RESET  │        │        │        │        │        │ AG_NORM│           │ AG_SWAP│        │        │        │        │        │        │
      * ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤           ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      * │        │  Vol-  │  Vol+  │  Mute  │        │        │ AG_NORM│           │ AG_SWAP│        │        │        │        │        │        │
      * ├────────┼────────┼────────┼────────┼────────┼────────┼─┬──────┴─┐       ┌─┴──────┬─┼────────┼────────┼────────┼────────┼────────┼────────┤
@@ -186,8 +181,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                                   └────────┴────────┴─┴─┴────────┘       └────────┴─┴─┴────────┴────────┘
      */
     [_ADJUST] = {
-        { KC_PWR,   PHONG,    V1,       V2,       V3,       XXXXXXX,  KC_F14,   KC_F15,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX },
-        { RESET,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX },
+        { KC_PWR,   PHONG_V1, PHONG_V2, PHONG_V3, QWERTY,   XXXXXXX,  KC_F14,   KC_F15,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX },
+        { RESET,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  AG_NORM,  AG_SWAP,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX },
         { XXXXXXX,  KC_VOLD,  KC_VOLU,  KC_MUTE,  XXXXXXX,  XXXXXXX,  AG_NORM,  AG_SWAP,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX },
         { XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX },
         { XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX }
@@ -211,7 +206,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         { XXXXXXX,  XXXXXXX,  KC_BTN3,  KC_MS_U,  KC_BTN2,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_BTN2,  KC_WH_U,  KC_BTN3,  XXXXXXX,  XXXXXXX },
         { XXXXXXX,  KC_BTN2,  KC_MS_L,  KC_MS_D,  KC_MS_R,  KC_BTN1,  XXXXXXX,  XXXXXXX,  KC_BTN1,  KC_WH_L,  KC_WH_D,  KC_WH_R,  XXXXXXX,  XXXXXXX },
         { XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX },
-        { XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX }
+        { XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX }
     },
 
     /*
@@ -226,15 +221,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * └────────┴────────┴────────┴──────┬─┴──────┬─┴──────┬─┼─┼────────┤       ├────────┼─┼─┬──────┴─┬──────┴─┬──────┴────────┴────────┴────────┘
      *                                   │        │        │││││        │       │        │││││        │        │
      *                                   └────────┴────────┴─┴─┴────────┘       └────────┴─┴─┴────────┴────────┘
+     *
+     * [_SAMPLE] = {
+     *     { XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX },
+     *     { XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX },
+     *     { XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX },
+     *     { XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX },
+     *     { XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX }
+     * },
      */
-    // [_SAMPLE] = {
-    //     { XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX },
-    //     { XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX },
-    //     { XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX },
-    //     { XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX },
-    //     { XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX }
-    // },
-
 };
 
 
@@ -247,6 +242,30 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case EPRM:
             if (record->event.pressed) {
                 eeconfig_init();
+            }
+            return false;
+            break;
+        case PHONG_V1:
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_PHONG_V1);
+            }
+            return false;
+            break;
+        case PHONG_V2:
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_PHONG_V2);
+            }
+            return false;
+            break;
+        case PHONG_V3:
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_PHONG_V3);
+            }
+            return false;
+            break;
+        case QWERTY:
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_QWERTY);
             }
             return false;
             break;
