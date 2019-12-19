@@ -58,11 +58,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                                   └────────┴────────┴─┴─┴────────┘       └────────┴─┴─┴────────┴────────┘
      */
     [_BASE_V1] = {
-        { KC_EQL,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,    KC_DEL,   KC_GRV,   KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS },
-        { KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,    KC_LBRC,  KC_RBRC,  KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_BSLS },
-        { CTL_ESC,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,    CAG_PUP,  CAG_PDN,  KC_H,     KC_J,     KC_K,     KC_L,     MOU_SCL,  GUI_QUO },
-        { KC_LSFT,  CTL_Z,    KC_X,     KC_C,     KC_V,     KC_B,    XXXXXXX,  XXXXXXX,  KC_N,     KC_M,     KC_COMM,  KC_DOT,   CTL_SLS,  SFT_BSP },
-        { XXXXXXX,  XXXXXXX,  KC_LGUI,  LWR_SPC,  KC_HOME,  KC_SPC,  XXXXXXX,  XXXXXXX,  KC_ENT,   KC_END,   RSE_ENT,  KC_LALT,  XXXXXXX,  XXXXXXX }
+        { KC_EQL,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_DEL,   KC_GRV,   KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS },
+        { KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_LBRC,  KC_RBRC,  KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_BSLS },
+        { CTL_ESC,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     CAG_PUP,  CAG_PDN,  KC_H,     KC_J,     KC_K,     KC_L,     MOU_SCL,  GUI_QUO },
+        { KC_LSFT,  CTL_Z,    KC_X,     KC_C,     KC_V,     KC_B,     XXXXXXX,  XXXXXXX,  KC_N,     KC_M,     KC_COMM,  KC_DOT,   CTL_SLS,  SFT_BSP },
+        { XXXXXXX,  XXXXXXX,  KC_LGUI,  LWR_SPC,  KC_HOME,  KC_SPC,   XXXXXXX,  XXXXXXX,  KC_ENT,   KC_END,   RSE_ENT,  KC_LALT,  XXXXXXX,  XXXXXXX }
     },
 
     /*
@@ -79,11 +79,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                                   └────────┴────────┴─┴─┴────────┘       └────────┴─┴─┴────────┴────────┘
      */
     [_BASE_V2] = {
-        { KC_EQL,   KC_1,     KC_2,     KC_3,    KC_4,      KC_5,    KC_DEL,   KC_GRV,   KC_6,     KC_7,    KC_8,     KC_9,     KC_0,      KC_MINS },
-        { KC_TAB,   KC_Q,     KC_W,     KC_E,    KC_R,      KC_T,    KC_LBRC,  KC_RBRC,  KC_Y,     KC_U,    KC_I,     KC_O,     KC_P,      KC_BSLS },
-        { CTL_ESC,  KC_A,     KC_S,     KC_D,    KC_F,      KC_G,    CAG_PUP,  CAG_PDN,  KC_H,     KC_J,    KC_K,     KC_L,     MOU_SCL,   GUI_QUO },
-        { KC_LSFT,  CTL_Z,    KC_X,     KC_C,    KC_V,      KC_B,    XXXXXXX,  XXXXXXX,  KC_N,     KC_M,    KC_COMM,  KC_DOT,   CTL_SLS,   SFT_ENT },
-        { XXXXXXX,  XXXXXXX,  KC_LGUI,  LWR_SPC, KC_HOME,   KC_SPC,  XXXXXXX,  XXXXXXX,  KC_BSPC,  KC_END,  RSE_BSP,  KC_LALT,  XXXXXXX,   XXXXXXX }
+        { KC_EQL,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_DEL,   KC_GRV,   KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS },
+        { KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_LBRC,  KC_RBRC,  KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_BSLS },
+        { CTL_ESC,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     CAG_PUP,  CAG_PDN,  KC_H,     KC_J,     KC_K,     KC_L,     MOU_SCL,  GUI_QUO },
+        { KC_LSFT,  CTL_Z,    KC_X,     KC_C,     KC_V,     KC_B,     XXXXXXX,  XXXXXXX,  KC_N,     KC_M,     KC_COMM,  KC_DOT,   CTL_SLS,  SFT_ENT },
+        { XXXXXXX,  XXXXXXX,  KC_LGUI,  LWR_SPC,  KC_HOME,  KC_SPC,   XXXXXXX,  XXXXXXX,  KC_BSPC,  KC_END,   RSE_BSP,  KC_LALT,  XXXXXXX,  XXXXXXX }
     },
 
     /*
@@ -100,11 +100,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                                   └────────┴────────┴─┴─┴────────┘       └────────┴─┴─┴────────┴────────┘
      */
     [_BASE_V3] = {
-        { KC_EQL,   KC_1,     KC_2,     KC_3,    KC_4,      KC_5,    KC_DEL,   KC_GRV,   KC_6,     KC_7,    KC_8,     KC_9,     KC_0,      KC_MINS },
-        { KC_TAB,   KC_Q,     KC_W,     KC_E,    KC_R,      KC_T,    KC_LBRC,  KC_RBRC,  KC_Y,     KC_U,    KC_I,     KC_O,     KC_P,      KC_BSPC },
-        { CTL_ESC,  KC_A,     KC_S,     KC_D,    KC_F,      KC_G,    CAG_PUP,  CAG_PDN,  KC_H,     KC_J,    KC_K,     KC_L,     MOU_SCL,   GUI_QUO },
-        { KC_LSFT,  CTL_Z,    KC_X,     KC_C,    KC_V,      KC_B,    XXXXXXX,  XXXXXXX,  KC_N,     KC_M,    KC_COMM,  KC_DOT,   CTL_SLS,   SFT_BSL },
-        { XXXXXXX,  XXXXXXX,  KC_LGUI,  LWR_SPC, KC_HOME,   KC_SPC,  XXXXXXX,  XXXXXXX,  KC_ENT,   KC_END,  RSE_ENT,  KC_LALT,  XXXXXXX,   XXXXXXX }
+        { KC_EQL,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_DEL,   KC_GRV,   KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS },
+        { KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_LBRC,  KC_RBRC,  KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_BSPC },
+        { CTL_ESC,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     CAG_PUP,  CAG_PDN,  KC_H,     KC_J,     KC_K,     KC_L,     MOU_SCL,  GUI_QUO },
+        { KC_LSFT,  CTL_Z,    KC_X,     KC_C,     KC_V,     KC_B,     XXXXXXX,  XXXXXXX,  KC_N,     KC_M,     KC_COMM,  KC_DOT,   CTL_SLS,  SFT_BSL },
+        { XXXXXXX,  XXXXXXX,  KC_LGUI,  LWR_SPC,  KC_HOME,  KC_SPC,   XXXXXXX,  XXXXXXX,  KC_ENT,   KC_END,   RSE_ENT,  KC_LALT,  XXXXXXX,  XXXXXXX }
     },
 
     /*
@@ -121,11 +121,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                                   └────────┴────────┴─┴─┴────────┘       └────────┴─┴─┴────────┴────────┘
      */
     [_ERGODOX] = {
-        { KC_EQL,   KC_1,     KC_2,     KC_3,    KC_4,      KC_5,    KC_DEL,   KC_GRV,   KC_6,     KC_7,    KC_8,     KC_9,     KC_0,      KC_MINS },
-        { KC_TAB,   KC_Q,     KC_W,     KC_E,    KC_R,      KC_T,    KC_LBRC,  KC_RBRC,  KC_Y,     KC_U,    KC_I,     KC_O,     KC_P,      KC_BSPC },
-        { CTL_BSP,  KC_A,     KC_S,     KC_D,    KC_F,      KC_G,    CAG_PUP,  CAG_PDN,  KC_H,     KC_J,    KC_K,     KC_L,     MOU_SCL,   GUI_QUO },
-        { KC_LSFT,  CTL_Z,    KC_X,     KC_C,    KC_V,      KC_B,    XXXXXXX,  XXXXXXX,  KC_N,     KC_M,    KC_COMM,  KC_DOT,   CTL_SLS,   SFT_BSL },
-        { XXXXXXX,  XXXXXXX,  KC_LGUI,  LWR_SPC, KC_HOME,   KC_SPC,  XXXXXXX,  XXXXXXX,  KC_ENT,   KC_END,  RSE_ENT,  KC_LALT,  XXXXXXX,   XXXXXXX }
+        { KC_EQL,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_DEL,   KC_GRV,   KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS },
+        { KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_LBRC,  KC_RBRC,  KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_BSPC },
+        { CTL_BSP,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     CAG_PUP,  CAG_PDN,  KC_H,     KC_J,     KC_K,     KC_L,     MOU_SCL,  GUI_QUO },
+        { KC_LSFT,  CTL_Z,    KC_X,     KC_C,     KC_V,     KC_B,     XXXXXXX,  XXXXXXX,  KC_N,     KC_M,     KC_COMM,  KC_DOT,   CTL_SLS,  SFT_BSL },
+        { XXXXXXX,  XXXXXXX,  KC_LGUI,  LWR_SPC,  KC_HOME,  KC_SPC,   XXXXXXX,  XXXXXXX,  KC_ENT,   KC_END,   RSE_ENT,  KC_LALT,  XXXXXXX,  XXXXXXX }
     },
 
     /*
@@ -142,11 +142,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                                   └────────┴────────┴─┴─┴────────┘       └────────┴─┴─┴────────┴────────┘
      */
     [_QWERTY] = {
-        { KC_GRV,   KC_1,     KC_2,     KC_3,    KC_4,      KC_5,    KC_MINS,  KC_EQL,   KC_6,     KC_7,    KC_8,     KC_9,     KC_0,      KC_BSPC },
-        { KC_TAB,   KC_Q,     KC_W,     KC_E,    KC_R,      KC_T,    KC_LBRC,  KC_RBRC,  KC_Y,     KC_U,    KC_I,     KC_O,     KC_P,      KC_BSLS },
-        { CTL_ESC,  KC_A,     KC_S,     KC_D,    KC_F,      KC_G,    CAG_PUP,  CAG_PDN,  KC_H,     KC_J,    KC_K,     KC_L,     MOU_SCL,   GUI_QUO },
-        { KC_LSFT,  CTL_Z,    KC_X,     KC_C,    KC_V,      KC_B,    XXXXXXX,  XXXXXXX,  KC_N,     KC_M,    KC_COMM,  KC_DOT,   CTL_SLS,   KC_RSFT },
-        { XXXXXXX,  XXXXXXX,  KC_LGUI,  LWR_SPC, KC_HOME,   KC_SPC,  XXXXXXX,  XXXXXXX,  KC_ENT,   KC_END,  RSE_ENT,  KC_LALT,  XXXXXXX,   XXXXXXX }
+        { KC_GRV,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_MINS,  KC_EQL,   KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_BSPC },
+        { KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_LBRC,  KC_RBRC,  KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_BSLS },
+        { CTL_ESC,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     CAG_PUP,  CAG_PDN,  KC_H,     KC_J,     KC_K,     KC_L,     MOU_SCL,  GUI_QUO },
+        { KC_LSFT,  CTL_Z,    KC_X,     KC_C,     KC_V,     KC_B,     XXXXXXX,  XXXXXXX,  KC_N,     KC_M,     KC_COMM,  KC_DOT,   CTL_SLS,  KC_RSFT },
+        { XXXXXXX,  XXXXXXX,  KC_LGUI,  LWR_SPC,  KC_HOME,  KC_SPC,   XXXXXXX,  XXXXXXX,  KC_ENT,   KC_END,   RSE_ENT,  KC_LALT,  XXXXXXX,  XXXXXXX }
     },
 
     /*
